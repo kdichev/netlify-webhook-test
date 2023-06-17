@@ -1,7 +1,15 @@
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 
-const handler = (req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) => {
+const handler = async (
+  req: GatsbyFunctionRequest,
+  res: GatsbyFunctionResponse
+) => {
   console.log("Build started invoked");
+  await new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 10000); // 10 seconds
+  });
   res.status(200).json({ success: true });
 };
 
